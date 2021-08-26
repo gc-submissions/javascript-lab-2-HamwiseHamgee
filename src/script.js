@@ -6,9 +6,7 @@
 // no parameters
 // returns a random integer between 1 and 10
 
-let randomDamage = () => {
-  Math.floor(Math.random() * 10) + 1;
-};
+let randomDamage = () => Math.floor(Math.random() * 10) + 1;
 
 // Declare arrow function chooseOption
 // 2 parameters: opt1 and opt2
@@ -44,6 +42,10 @@ function attackPlayer(health) {
 
 let logHealth = (player, health) => console.log(`${player} health: ${health}`);
 
+let logDeath = (winner, loser) => {
+    console.log(`${winner} defeated ${loser}`);
+}
+
 // Declare arrow function isDead
 // 1 parameter: health
 // Return boolean based on:
@@ -73,7 +75,8 @@ let isDead = (health) => health <= 0;
 // Break
 
 function fight(player1, player2, player1Health, player2Health) {
-  while (true) {
+  let i = 0;
+    while (true) {
     i++;
     let attacker = chooseOption(player1, player2);
 
@@ -81,21 +84,21 @@ function fight(player1, player2, player1Health, player2Health) {
       break;
     }
     
-    if (attacker = player1) {
+    if (attacker === player1) {
       player2Health = attackPlayer(player2Health);
       logHealth(player2, player2Health);
       if (isDead(player2Health) === true) {
-        logdeath(player1, player2);
+        logDeath(player1, player2);
         break;
       } else {
           player1Health = attackPlayer(player1Health);
           logHealth(player1, player1Health);
           if (isDead(player1Health) === true) {
-              logdeath(player2, player1);
+              logDeath(player2, player1);
               break;
           }
       }
     }
   }
 }
-fight ("Daddy", "Mommy", 100, 100);
+fight ("Sid", "Nancy", 100, 100);
